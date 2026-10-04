@@ -1,9 +1,10 @@
 import cv2
-from src.backend.algorithms.phash_dtw.phash import pHash
+from src.backend.interfaces.fingerprinter import Fingerprinter
 
 
-# 获取视频的感知哈希值序列
-def get_phash_sequence(video: cv2.VideoCapture, frame_interval: int, name: str = "None", signals=None,
+# 获取视频的指纹序列
+def get_fingerprint_sequence(video: cv2.VideoCapture, frame_interval: int, fingerprinter: Fingerprinter,
+                       name: str = "None", signals=None,
                        progress_bar_index=1) -> list:
     sequence = []
     if not video.isOpened():
@@ -41,8 +42,8 @@ def get_phash_sequence(video: cv2.VideoCapture, frame_interval: int, name: str =
                 break
 
             last_processed_time = current_time // 1000 * 1000
-            phash = pHash(frame)
-            sequence.append(phash)
+            fingerprint = fingerprinter.fingerprint(frame)
+            sequence.append(fingerprint)
 
 
             progress_value = int((current_time / frame_duration) * 100)+1
