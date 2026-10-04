@@ -1,7 +1,7 @@
 [project]
 name = "danmuweaver"
 version = "0.1.0"
-description = "一个基于 phash/DTW 计算弹幕偏移时间的工具"
+description = "将删减版视频的弹幕时间轴重新映射到完整版视频"
 requires-python = ">=3.10"
 dependencies = [
     "darkdetect>=0.8.0",
