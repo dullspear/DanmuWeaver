@@ -2,7 +2,7 @@ import cv2
 from concurrent.futures import ThreadPoolExecutor
 from fastdtw import fastdtw
 from scipy.spatial.distance import hamming
-from video_processing import get_phash_sequence
+from src.backend.algorithms.phash_dtw.video_processing import get_phash_sequence
 
 
 # 比较两个视频帧

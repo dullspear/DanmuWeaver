@@ -1,74 +1,45 @@
-# special
-*.doc
-/frames_long/
-/frames_long_del_60_90s/
-/frames_short/
-/res/
-
-
-
-
-/log.txt
-/db/
-/backup/
-/log/log.txt
-/dist/
-/build/
-/log/
-/conda_requirements.txt
-/generate_tree.py
-/pip_requirements.txt
-
-
+# Vibe Coding
+AGENTS.md
 
 # Python
-*.pyc
 __pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# database
-*.db
+# Virtualenv
+venv/
+.venv/
+env/
 
-# PyQt
-*.pyproj
-*.pyproj.user
+# IDE
+.idea/
+.vscode/
+
+# Windows
 *.suo
 *.user
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-.idea/
-
-
-
-# Compiled files
-build/
-dist/
-dist - 副本/
-log/
-account.db
-config.json
-generate_tree.py
-net_speed.py
+Thumbs.db
+Desktop.ini
 
 # macOS
 .DS_Store
 
-# Windows
-Thumbs.db
-Desktop.ini
-
 # PyInstaller
-__pycache__/
-*.pyc
-*.pyo
 *.spec
-dist/
-build/
 
+# Project-specific: debug frame dumps (used by legacy/DTW.py's commented-out frame export code)
+/frames_long/
+/frames_long_del_60_90s/
+/frames_short/
 
-# Virtualenv
-venv/
-*.venv/
-
-
+# Logs
+*.log

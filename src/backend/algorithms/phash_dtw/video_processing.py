@@ -1,5 +1,5 @@
 import cv2
-from phash import pHash
+from src.backend.algorithms.phash_dtw.phash import pHash
 
 
 # 获取视频的感知哈希值序列

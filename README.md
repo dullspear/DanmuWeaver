@@ -65,7 +65,12 @@
 
 ### 自行编译
 
-安装`requirements.txt`后，运行`gui.py`即可。
+安装`requirements.txt`后，在仓库根目录运行：
+
+```bash
+python -m src.frontend.gui.gui
+```
+
 您也可以直接使用release中已经打包好的exe程序。
 
 

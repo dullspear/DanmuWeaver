@@ -4,8 +4,8 @@ from PySide6.QtWidgets import (
     QFileDialog, QMessageBox, QVBoxLayout, QWidget, QProgressBar
 )
 from PySide6.QtCore import Qt, Signal, QThread, QObject
-from video_comparison import compare_video
-from switch import switch
+from src.backend.algorithms.phash_dtw.video_comparison import compare_video
+from src.backend.switch import switch
 import os
 
 # 定义一个信号类，用于线程间通信
