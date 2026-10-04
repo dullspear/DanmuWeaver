@@ -65,10 +65,10 @@
 
 ### 自行编译
 
-安装`requirements.txt`后，在仓库根目录运行：
+使用 [uv](https://docs.astral.sh/uv/) 管理依赖，在仓库根目录运行：
 
 ```bash
-python -m src.frontend.gui.gui
+uv run python -m src.frontend.gui.gui
 ```
 
 您也可以直接使用release中已经打包好的exe程序。
