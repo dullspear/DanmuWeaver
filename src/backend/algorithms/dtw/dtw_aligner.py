@@ -10,4 +10,9 @@ class DtwAligner(Aligner):
 
     def align(self, sequence1: list, sequence2: list, dist_fn: Callable[[Any, Any], float]) -> list:
         distance, path = fastdtw(sequence1, sequence2, dist=dist_fn)
-        return path
+
+        grouped = {}
+        for i, j in path:
+            grouped.setdefault(i, []).append(j)
+
+        return [min(grouped[i], key=lambda j: dist_fn(sequence1[i], sequence2[j])) for i in range(len(sequence1))]
