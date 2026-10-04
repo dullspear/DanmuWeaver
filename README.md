@@ -65,7 +65,7 @@
 
 ### 自行编译
 
-使用 [uv](https://docs.astral.sh/uv/) 管理依赖，在仓库根目录运行：
+使用 uv 管理依赖，在仓库根目录运行：
 
 ```bash
 uv run python -m src.frontend.gui.gui
