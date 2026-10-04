@@ -4,7 +4,7 @@ from PySide6.QtWidgets import (
     QFileDialog, QMessageBox, QVBoxLayout, QWidget, QProgressBar
 )
 from PySide6.QtCore import Qt, Signal, QThread, QObject
-from src.backend.algorithms.phash_dtw.video_comparison import compare_video
+from src.backend.video_comparison import compare_video
 from src.backend.switch import switch
 import os
 
