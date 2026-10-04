@@ -20,7 +20,7 @@ def pHash(img):
     vis0[:h, :w] = img
 
     # 二维DCT变换
-    vis1 = cv2.dct(cv2.dct(vis0))
+    vis1 = cv2.dct(vis0)
     vis1 = vis1[:8, :8]
 
     # 将二维list变成一维list

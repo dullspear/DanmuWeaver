@@ -12,17 +12,6 @@ def hms_to_seconds(time_str):
     return int(hours * 3600 + minutes * 60 + seconds)
 
 
-def tuple2int(tuples):
-    result_dict = {}
-
-    for tup in tuples:
-        result_dict[tup[0]] = tup[1]
-
-    result_list = [result_dict[key] for key in range(max(result_dict) + 1)]
-
-    return result_list
-
-
 def process_ass_file(input_file_path, output_file_path, data_two):
     print("data_two:",data_two)
     print("data_two.length()",len(data_two))
@@ -39,13 +28,15 @@ def process_ass_file(input_file_path, output_file_path, data_two):
             # print(i)
             # 更新 Start
             start_old = hms_to_seconds(start_parts[1])
+            end_old = hms_to_seconds(start_parts[2])
+            duration = end_old - start_old
             print(start_old)
             start_new = data_two[start_old]
 
             start_parts[1] = seconds_to_hms(start_new)
 
             # 更新 End
-            new_end_seconds = start_new + 8.0
+            new_end_seconds = start_new + duration
             new_end = seconds_to_hms(new_end_seconds)
             start_parts[2] = new_end
 
@@ -57,11 +48,7 @@ def process_ass_file(input_file_path, output_file_path, data_two):
         output_file.writelines(content)
 
 
-def switch(input_ass_path: str, output_ass_path: str, map_tuple: list):
-    # Example usage:
-
-    # data_two = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
-    data_two = map_tuple
-    data_two.append((data_two[-1][0] + 1, data_two[-1][1] + 1))  # 不加会后面段错误 out of range
-    data_two = tuple2int(data_two)
+def switch(input_ass_path: str, output_ass_path: str, mapping: list):
+    data_two = list(mapping)
+    data_two.append(data_two[-1] + 1)  # 不加会后面段错误 out of range
     process_ass_file(input_ass_path, output_ass_path, data_two)
