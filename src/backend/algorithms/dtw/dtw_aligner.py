@@ -1,15 +1,21 @@
 from typing import Any, Callable
 
-from fastdtw import fastdtw
+import numpy as np
+from dtaidistance import dtw
 
 from src.backend.interfaces.aligner import Aligner
 
 
 class DtwAligner(Aligner):
-    """DTW 对齐实现，对距离函数完全通用，不绑定任何具体指纹算法。"""
+    """窗口限制的精确DTW(C加速)，核心对齐步骤要求 dist_fn 等价于 squared euclidean(比如0/1向量上的hamming距离)，消歧步骤仍用 dist_fn 本身。"""
+
+    def __init__(self, window: int = 300):
+        self.window = window
 
     def align(self, sequence1: list, sequence2: list, dist_fn: Callable[[Any, Any], float]) -> list:
-        distance, path = fastdtw(sequence1, sequence2, dist=dist_fn)
+        seq1_np = np.array(sequence1, dtype=np.double)
+        seq2_np = np.array(sequence2, dtype=np.double)
+        path = dtw.warping_path(seq1_np, seq2_np, use_ndim=True, window=self.window, use_c=True)
 
         grouped = {}
         for i, j in path:
