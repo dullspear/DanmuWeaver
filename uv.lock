@@ -10,10 +10,10 @@ resolution-markers = [
 [[package]]
 name = "danmuweaver"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "darkdetect" },
-    { name = "fastdtw" },
+    { name = "dtaidistance" },
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
     { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
@@ -33,7 +33,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "darkdetect", specifier = ">=0.8.0" },
-    { name = "fastdtw", specifier = ">=0.3.4" },
+    { name = "dtaidistance", specifier = ">=2.5.1" },
     { name = "numpy", specifier = ">=2.1.3" },
     { name = "opencv-python", specifier = ">=4.10.0.84" },
     { name = "pyside6", specifier = ">=6.8.0.2" },
@@ -56,15 +56,30 @@ wheels = [
 ]
 
 [[package]]
-name = "fastdtw"
-version = "0.3.4"
+name = "dtaidistance"
+version = "2.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.11.*'" },
     { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/99/43/30f2d8db076f216b15c10db663b46e22d1750b1ebacd7af6e62b83d6ab98/fastdtw-0.3.4.tar.gz", hash = "sha256:2350fa6ec36bcad186eaf81f46eff35181baf04e324f522de8aeb43d0243f64f", size = 133402, upload-time = "2019-10-07T16:02:29.982Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bb/73/e02bd51026b76518b264f9e17e4159f392bc08730870a89cd832031a34fc/dtaidistance-2.5.1.tar.gz", hash = "sha256:707c7d323bafa4f5e835f15b6e3410fe628e5076506cb67248049e90a18e3a18", size = 1395948, upload-time = "2026-09-11T11:09:48.88Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9f/15/e8a515986e9a7dd3e315425af68101157efb6b4a50d155f710f081486d04/dtaidistance-2.5.1-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:c168801c078dbe7de730c0afdbf0973b03d9521cc37e9f5095e39c2b407d4011", size = 2255716, upload-time = "2026-09-11T11:09:33.08Z" },
+    { url = "https://files.pythonhosted.org/packages/f8/33/3a63661f71f863b922b8dd8df3c6bcd69c29cfd997e8704156d4865242cc/dtaidistance-2.5.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:74faaa81cef6c3d193f921672e2ab832a66d8ed0d7de3126fdb44d6606a4bb4b", size = 4657098, upload-time = "2026-09-11T11:09:34.342Z" },
+    { url = "https://files.pythonhosted.org/packages/e8/69/877a658428ffc035f416f87fd3c327bacaa6a6ed86be600e954e8dacc880/dtaidistance-2.5.1-cp311-cp311-win_amd64.whl", hash = "sha256:019226688c14d6cf9dbfe82cfcb97d5a5c85d17abaac5f35ec8accff56659f94", size = 1533388, upload-time = "2026-09-11T11:09:35.654Z" },
+    { url = "https://files.pythonhosted.org/packages/88/f6/0e1ddb70160b62dc6016ea3eff6d44a566b3f3681049d855a7c6d2efc5b9/dtaidistance-2.5.1-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:1b93b9ef4238d28c5762da54a70a423e2084e2172293ae523641404f7280234b", size = 2262612, upload-time = "2026-09-11T11:09:36.687Z" },
+    { url = "https://files.pythonhosted.org/packages/88/89/3b9fe2653ee4c8934ebb8d1e8f0d4387e888dfbc7cbd7773d8cd0873191b/dtaidistance-2.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f483b59eadb65ff63df9180cbf5d00cfc25fc0690c029422594532fda38a349b", size = 4659634, upload-time = "2026-09-11T11:09:37.893Z" },
+    { url = "https://files.pythonhosted.org/packages/84/38/63d2df930b49a2d84196d3ca6079e52fa5b1a7d9e3d3bd2a492c6989b39f/dtaidistance-2.5.1-cp312-cp312-win_amd64.whl", hash = "sha256:35096eeb2e43d85df342c53cc9f3481c9068b7e720aff2ec0534eea5ce3b9e2a", size = 1541718, upload-time = "2026-09-11T11:09:38.979Z" },
+    { url = "https://files.pythonhosted.org/packages/22/57/964622b8afaac98729a28dbb8c79cf67c6b82c08caf4fe7244bb04486ab4/dtaidistance-2.5.1-cp313-cp313-macosx_10_13_universal2.whl", hash = "sha256:f05d3de0b4515b106a79be1eaabf752b7e9e3b2bdf70ba09d7b3e38d329c38fd", size = 2263834, upload-time = "2026-09-11T11:09:40.349Z" },
+    { url = "https://files.pythonhosted.org/packages/65/ba/4c4f4ba1579a46c84be827ec6afe30764742191d3dfcbec7ad2ad2cea89c/dtaidistance-2.5.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:177efa614e40b83bd1b2a5554dcbeb4976211e86d84a411347cb6218256551d5", size = 4634415, upload-time = "2026-09-11T11:09:41.45Z" },
+    { url = "https://files.pythonhosted.org/packages/e6/45/8687b3241814362fd758fc75cc2a1c96adf2d09ea33470e056313791c132/dtaidistance-2.5.1-cp313-cp313-win_amd64.whl", hash = "sha256:411b966f14a5f3ed773b149f23006ed9e0f37bcf288f4b67f887d917349fba61", size = 1540629, upload-time = "2026-09-11T11:09:42.766Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/78/16a149048e677061d5ae5103b07e674fc9362d71a49fa1eb48f0a7653a71/dtaidistance-2.5.1-cp314-cp314-macosx_10_15_universal2.whl", hash = "sha256:4ed72751a6068ee5dc245698e75cef01553690ef1735f9465932a1dea4a9734b", size = 2273646, upload-time = "2026-09-11T11:09:43.757Z" },
+    { url = "https://files.pythonhosted.org/packages/6d/55/1c8c9e10771d00044fb76c6e961dcdbc7bc5bdf404f4b9b296db84e6b9b9/dtaidistance-2.5.1-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:4c9a983abf55094271ecbb86f5ce0ae1845ff6b1b77a273c3924227fd42009db", size = 4616243, upload-time = "2026-09-11T11:09:44.949Z" },
+    { url = "https://files.pythonhosted.org/packages/14/5e/65cb7599b82047bc061d38f2f6ffe1776b814f94a7bef1f9360989592101/dtaidistance-2.5.1-cp314-cp314-win_amd64.whl", hash = "sha256:fadb86d38cb8434c83a9d36d45d98c57cf910103c8f0350406df87988a147ee6", size = 1550483, upload-time = "2026-09-11T11:09:46.343Z" },
+    { url = "https://files.pythonhosted.org/packages/a8/1c/6b7878007888fffcc386aa563352bd465412a92a5878c3a64f2fec02b863/dtaidistance-2.5.1-cp314-cp314t-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:5c9f1ddec4e3becd6d15f2294706d2c63f868c0b85d10a937e72a41e475e25ba", size = 4608771, upload-time = "2026-09-11T11:09:47.497Z" },
+]
 
 [[package]]
 name = "numpy"
