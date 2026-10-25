@@ -1,0 +1,13 @@
+body { font-family: sans-serif; margin: 0; background: #000; }
+#player-area { position: relative; max-width: 900px; margin: 0 auto; }
+#dplayer { width: 100%; }
+
+/* 叠加进 DPlayer 原生进度条 .dplayer-bar（3px高）里，不单独起一条 */
+.missing-segment {
+  position: absolute;
+  top: 0;
+  height: 3px;
+  background: rgba(231, 76, 60, 0.85);
+  pointer-events: none;
+  z-index: 5;
+}
