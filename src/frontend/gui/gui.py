@@ -13,6 +13,8 @@ from qfluentwidgets import (
 )
 
 from src.backend.danmaku_convert import ass_to_danmaku_json
+from src.backend.segments import find_missing_segments
+from src.backend.switch import switch
 from src.backend.video_comparison import compare_video
 from src.frontend.gui.paths import ICON_PATH
 from src.frontend.gui.player.web_server import launch as launch_player
@@ -40,16 +42,20 @@ class VideoProcessingThread(QThread):
             output_file_name_without_extension, _ = os.path.splitext(video_file_name)
             output_ass_path = os.path.join(os.path.dirname(self.input_ass_path), output_file_name_without_extension + ".ass")
 
-            # 对比视频并获取对齐结果
-            alignment = compare_video(self.input_video_path, self.output_video_path, frame_interval=1, signals=self.signals)
-            alignment.to_ass(self.input_ass_path, output_ass_path)
+            # 对比视频并获取路径
+            path = compare_video(self.input_video_path, self.output_video_path, frame_interval=1, signals=self.signals)
+            switch(self.input_ass_path, output_ass_path, path)
 
-            comments = ass_to_danmaku_json(output_ass_path)
+            # 补上 DPlayer 弹幕协议需要的字段（type/color/author 是播放器的事，不是字幕本身的信息）
+            comments = [
+                {"time": c["time"], "type": 0, "color": 16777215, "author": "", "text": c["text"]}
+                for c in ass_to_danmaku_json(output_ass_path)
+            ]
             video = cv2.VideoCapture(self.output_video_path)
             fps = video.get(cv2.CAP_PROP_FPS)
             total_frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
             long_duration = total_frames / fps if fps else 0
-            missing_segments = alignment.missing_segments(int(long_duration))
+            missing_segments = find_missing_segments(path, int(long_duration))
 
             launch_player(self.output_video_path, {
                 "comments": comments,
