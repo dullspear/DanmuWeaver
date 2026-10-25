@@ -12,13 +12,10 @@ from qfluentwidgets import (
     InfoBarPosition, FluentIcon, setTheme, Theme
 )
 
-from src.backend.segments import find_missing_segments
+from src.backend.danmaku_convert import ass_to_danmaku_json
 from src.backend.video_comparison import compare_video
-from src.backend.switch import switch
-from src.frontend.gui.player.danmaku_convert import ass_to_danmaku_json
+from src.frontend.gui.paths import ICON_PATH
 from src.frontend.gui.player.web_server import launch as launch_player
-
-ICON_PATH = os.path.join(os.path.dirname(__file__), "logo.ico")
 
 
 # 定义一个信号类，用于线程间通信
@@ -43,16 +40,16 @@ class VideoProcessingThread(QThread):
             output_file_name_without_extension, _ = os.path.splitext(video_file_name)
             output_ass_path = os.path.join(os.path.dirname(self.input_ass_path), output_file_name_without_extension + ".ass")
 
-            # 对比视频并获取路径
-            path = compare_video(self.input_video_path, self.output_video_path, frame_interval=1, signals=self.signals)
-            switch(self.input_ass_path, output_ass_path, path)
+            # 对比视频并获取对齐结果
+            alignment = compare_video(self.input_video_path, self.output_video_path, frame_interval=1, signals=self.signals)
+            alignment.to_ass(self.input_ass_path, output_ass_path)
 
             comments = ass_to_danmaku_json(output_ass_path)
             video = cv2.VideoCapture(self.output_video_path)
             fps = video.get(cv2.CAP_PROP_FPS)
             total_frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
             long_duration = total_frames / fps if fps else 0
-            missing_segments = find_missing_segments(path, int(long_duration))
+            missing_segments = alignment.missing_segments(int(long_duration))
 
             launch_player(self.output_video_path, {
                 "comments": comments,
@@ -125,7 +122,7 @@ class MainWindow(FluentWidget):
         super().__init__()
 
         self.setWindowTitle("弹幕编织者")
-        self.setWindowIcon(QIcon(ICON_PATH))
+        self.setWindowIcon(QIcon(str(ICON_PATH)))
         self.resize(640, 560)
 
         layout = QVBoxLayout(self)
@@ -135,7 +132,7 @@ class MainWindow(FluentWidget):
         # 品牌头：logo + 标题 + 副标题
         header_layout = QHBoxLayout()
         header_layout.setSpacing(14)
-        logo_pixmap = QPixmap(ICON_PATH).scaled(48, 48, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        logo_pixmap = QPixmap(str(ICON_PATH)).scaled(48, 48, Qt.KeepAspectRatio, Qt.SmoothTransformation)
         logo_icon_widget = IconWidget(QIcon(logo_pixmap), self)
         logo_icon_widget.setFixedSize(48, 48)
 

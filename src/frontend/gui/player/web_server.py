@@ -1,14 +1,13 @@
 import socket
 import threading
 import webbrowser
-from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-STATIC_DIR = Path(__file__).parent / "static"
+from src.frontend.gui.paths import STATIC_DIR
 
 
 def _find_free_port() -> int:
